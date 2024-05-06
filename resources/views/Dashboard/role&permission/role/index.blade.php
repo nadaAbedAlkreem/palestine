@@ -1,0 +1,82 @@
+@extends('Dashboard.layout.app')
+
+@section('content') 
+
+    
+<div class="container mt-5">
+        <a href="{{ url('roles') }}" class="btn btn-outline-primary mx-1">Roles</a>
+        <a href="{{ url('permissions') }}" class="btn btn-outline-dark mx-1">Permissions</a>
+        <a href="{{ url('users') }}" class="btn btn-outline-info mx-1">Users</a>
+    </div>
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-12">
+
+                @if (session('status'))
+                    <div class="alert alert-success">{{ session('status') }}</div>
+                @endif
+
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h4>
+                            Roles
+                            @can('create role')
+                            <a href="{{ url('roles/create') }}" class="btn btn-primary float-end">Add Role</a>
+                            @endcan
+                        </h4>
+                    </div>
+                    <div class="card-body">
+
+                        <table class="table table-bordered table-striped data-table-roles">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th width="40%">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>var hostUrl = "assets/";</script>
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="{{url('assets/plugins/global/plugins.bundle.js')}}"></script>
+				<!-- <script src="{{url('assets/js/scripts.bundle.js')}}"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+ 
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Vendors Javascript(used by this page)-->
+		<script src="{{url('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+		<!--end::Page Vendors Javascript-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+ 		<script src="{{url('assets/js/widgets.bundle.js')}}"></script>
+		<script src="{{url('assets/js/custom/widgets.js')}}"></script>
+		<script src="{{url('assets/js/custom/apps/chat/chat.js')}}"></script>
+		<script src="{{url('assets/js/custom/utilities/modals/users-search.js')}}"></script>
+        @push('scripts')
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script>
+            flatpickr("input[type=datetime-local]", {
+                enableTime: true, // Enable time selection
+                dateFormat: "Y-m-d h:i K", // Format with AM/PM indicator
+            });		
+       </script>
+    	@endpush
+     		<!-- in this page  -->
+	    <script src='assets/js/custom/actions/roles-action.js'></script>
+ 
+  
+ 
+                                         
+    @endsection
+ 
